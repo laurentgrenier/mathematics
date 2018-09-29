@@ -1,9 +1,9 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 print("\nvalues")
-X = np.array([1,2,3])
-Y = np.array([4,5,9])
+X = np.array([1, 2, 3])
+Y = np.array([4, 5, 8])
 print("\tX=", X)
 print("\tY=", Y)
 
@@ -40,3 +40,10 @@ print("\t# calculation from covariance and standard deviation")
 print("\tcorrcoef(X,Y)=", (np.cov(Y,X, bias=True)[0][1] / (X.std() * Y.std())))
 
 
+X = np.array([1, 2, 3, 4, 5, 6, 7])
+Y = np.array([2, 3, 5, 9, 5, 3, 2])
+plt.plot(X, Y)
+plt.axvline(x=X.mean(), linestyle='dotted')
+plt.axvline(x=X.mean()-X.std(), linestyle='dotted',color='r')
+plt.axvline(x=X.mean()+X.std(), linestyle='dotted',color='r')
+plt.show()

@@ -5,6 +5,10 @@ Here are some basics knowledge about mathematics.
 ## Mean
 ![\frac {1}{n}\sum_{i=1}^{n}x_i](https://latex.codecogs.com/gif.latex?%5Cfrac%20%7B1%7D%7Bn%7D%5Csum_%7Bi%3D1%7D%5E%7Bn%7Dx_i)
 
+```python
+import numpy as np
+np.mean(X)
+```
 
 ## Median
 Let's **values**, a collection of discrete value.
@@ -16,17 +20,20 @@ Else, if **n**, the number of values, is even:
 
 ![\frac{values[\frac{n}{2}] + values[\frac{n}{2} + 1]}{2}](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bvalues%5B%5Cfrac%7Bn%7D%7B2%7D%5D%20&plus;%20values%5B%5Cfrac%7Bn%7D%7B2%7D%20&plus;%201%5D%7D%7B2%7D)
 
+```python
+import numpy as np
+np.median(X)
+```
+
 ## Variance
 The variance measures how far each number in the set is from the mean. Variance is calculated by taking the differences between each number in the set and the mean, squaring the differences (to make them positive) and dividing the sum of the squares by the number of values in the set.
 
 ![\frac{1}{n}\sum_{i=1}^{n} (x_i - \bar{x})^{2})](https://latex.codecogs.com/gif.latex?%5Cfrac%7B1%7D%7Bn%7D%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%28x_i%20-%20%5Cbar%7Bx%7D%29%5E%7B2%7D)
 
 
-
 ```python
-import numpy as np
-goals = [0,1,1,1,2,2,2,2,2,3,3,3,4]
-np.array(goals).var()
+# X is a numpy array
+X.var()
 ```
 
 ## Standard deviation
@@ -36,20 +43,24 @@ In statistics, the standard deviation (SD, also represented by the Greek letter 
 ![\sigma = \sqrt{V}](https://latex.codecogs.com/gif.latex?%5Csigma%20%3D%20%5Csqrt%7BV%7D)
 
 ```python
+# X is a numpy array
 import math
-import numpy as np
 
-standard_deviation = math.sqrt(variance)
+standard_deviation = math.sqrt(X.var())
 # or 
-standard_deviation = np.array(goals).std()
+standard_deviation = X.std()
 ```
 
 #### Plotting the standard deviation
 ```python
-plt.plot(xis, nis)
-plt.axvline(x=goals_mean, linestyle='dotted')
-plt.axvline(x=goals_mean-standard_deviation, linestyle='dotted',color='r')
-plt.axvline(x=goals_mean+standard_deviation, linestyle='dotted',color='r')
+import numpy as np
+import matplotlib.pyplot as plt
+X = np.array([1, 2, 3, 4, 5, 6, 7])
+Y = np.array([2, 3, 5, 9, 5, 3, 2])
+plt.plot(X, Y)
+plt.axvline(x=X.mean(), linestyle='dotted')
+plt.axvline(x=X.mean()-X.std(), linestyle='dotted',color='r')
+plt.axvline(x=X.mean()+X.std(), linestyle='dotted',color='r')
 plt.show()
 ```
 ![math_basics_standarddeviation_001](images/math_basics_standarddeviation_001.png "Standard deviation")
