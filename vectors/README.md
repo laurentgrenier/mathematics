@@ -10,8 +10,8 @@ Basics about vectors
 
 ```python
 import numpy as np
-r = np.array([[1], [2]])
-s = np.array([[3], [4]])
+r = np.array([1,2])
+s = np.array([3,4])
 sum = r + s
 ```
 
@@ -20,9 +20,9 @@ sum = r + s
 
 ```python
 import numpy as np
-r = np.array([[1], [2]])
-s = np.array([[3], [4]])
-t = np.array([[5], [6]])
+r = np.array([1,2])
+s = np.array([3,4])
+t = np.array([5,6])
 np.array_equal(r+(s+t), r+(s+t))
 ```
 
@@ -45,7 +45,7 @@ Let's
 
 ```python
 import numpy as np
-r = np.array([[1], [2]])
+r = np.array([1,2])
 
 np.linalg.norm(r)
 ```
@@ -55,3 +55,47 @@ Let's ![\[r = \begin{bmatrix} r_{1} \\ r_{2} \end{bmatrix}\]](https://latex.code
 and ![\[s = \begin{bmatrix} s_{1} \\ s_{2} \end{bmatrix}\]](https://latex.codecogs.com/gif.latex?s%20%3D%20%5Cbegin%7Bbmatrix%7D%20s_%7B1%7D%20%5C%5C%20s_%7B2%7D%20%5Cend%7Bbmatrix%7D)
 
 ![\[r.s = r_{1}s_{1} \times r_{2}s_{2}\]](https://latex.codecogs.com/gif.latex?r.s%20%3D%20r_%7B1%7Ds_%7B1%7D%20%5Ctimes%20r_%7B2%7Ds_%7B2%7D)
+
+```python
+import numpy as np
+r = np.array([1,2])
+s = np.array([3,4])
+
+np.dot(r,s)
+```
+#### Commutativity
+![\[r.s = s.r\]](https://latex.codecogs.com/gif.latex?r.s%20%3D%20s.r)
+
+```python
+import numpy as np
+r = np.array([1,2])
+s = np.array([3,4])
+
+assert np.dot(r,s) == np.dot(s,r)
+```
+
+#### distributivity
+![\[r.(s+t) = r.s + r.t\]](https://latex.codecogs.com/gif.latex?r.%28s&plus;t%29%20%3D%20r.s%20&plus;%20r.t)
+
+```python
+import numpy as np
+r = np.array([1,2])
+s = np.array([3,4])
+t = np.array([5,6])
+
+assert np.dot(r,s+t) == np.dot(r,s)+np.dot(r,t)
+```
+
+#### associativity over scalar multiplication
+![\[r.(as) = a(r.s)\]](https://latex.codecogs.com/gif.latex?r.%28as%29%20%3D%20a%28r.s%29)
+
+
+```python
+import numpy as np
+r = np.array([1,2])
+s = np.array([3,4])
+a = 2
+
+assert np.dot(r, a * s) == a*np.dot(r, s)
+```
+
