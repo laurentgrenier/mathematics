@@ -99,3 +99,24 @@ a = 2
 assert np.dot(r, a * s) == a*np.dot(r, s)
 ```
 
+#### cosine rule
+![mathematics_vectors_001](images/mathematics_vectors_001.png "Vectors")
+
+![\[c^{2} = a^{2} + b^{2} - 2ab.cos\theta\]](https://latex.codecogs.com/gif.latex?c%5E%7B2%7D%20%3D%20a%5E%7B2%7D%20&plus;%20b%5E%7B2%7D%20-%202ab.cos%5Ctheta)
+
+![\[\left |r \right |\]](https://latex.codecogs.com/gif.latex?%5Cleft%20%7Cr%20%5Cright%20%7C) is the **modulus**. It's a number. \
+**r** is a vector
+
+![\[\left |r-s \right |^{2} = \left |r \right |^{2} + \left |s \right |^{2} - 2 \left |r \right |\left |s \right |.cos\theta\]](https://latex.codecogs.com/gif.latex?%5Cleft%20%7Cr-s%20%5Cright%20%7C%5E%7B2%7D%20%3D%20%5Cleft%20%7Cr%20%5Cright%20%7C%5E%7B2%7D%20&plus;%20%5Cleft%20%7Cs%20%5Cright%20%7C%5E%7B2%7D%20-%202%20%5Cleft%20%7Cr%20%5Cright%20%7C%5Cleft%20%7Cs%20%5Cright%20%7C.cos%5Ctheta)
+
+![\[r.s = \left |r \right |\left |s \right |cos(\theta )\]](https://latex.codecogs.com/gif.latex?r.s%20%3D%20%5Cleft%20%7Cr%20%5Cright%20%7C%5Cleft%20%7Cs%20%5Cright%20%7Ccos%28%5Ctheta%20%29)
+
+##### Specific cases
+If **r** and **s** are orthogonal, **r.s = 0** \
+If **r** and **s** are going into the same direction, ![\[r.s = \left |r \right |\left |s \right |\]](https://latex.codecogs.com/gif.latex?r.s%20%3D%20%5Cleft%20%7Cr%20%5Cright%20%7C%5Cleft%20%7Cs%20%5Cright%20%7C) \
+If **r** and **s** are going into opposite directions, ![\[r.s = - \left |r \right |\left |s \right |\]](https://latex.codecogs.com/gif.latex?r.s%20%3D%20-%20%5Cleft%20%7Cr%20%5Cright%20%7C%5Cleft%20%7Cs%20%5Cright%20%7C) \
+
+### Vectors projection
+
+![mathematics_vectors_002](images/mathematics_vectors_002.png "Vector projection")
+
