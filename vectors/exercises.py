@@ -8,7 +8,7 @@ print("\nvalues")
 r = np.array([1,2])
 s = np.array([3,4])
 t = np.array([5,6])
-
+teta = math.acos(np.dot(r,s) / (np.linalg.norm(r)*np.linalg.norm(s)))
 
 a = 2
 
@@ -31,8 +31,13 @@ print("commutativity: ", np.dot(r,s) == np.dot(s,r))
 print("distributivity: ", np.dot(r,s+t) == np.dot(r,s)+np.dot(r,t))
 print("associativity over scalar multiplication: ", np.dot(r, a * s) == a*np.dot(r, s))
 
-vectors = np.array([r, s])
-origin = [0], [0] # origin point
-plt.plot([])
-plt.quiver(*origin, vectors[:,0], vectors[:,1], color=['r', 'b', 'g'], scale=21)
-plt.show()
+print("\nCosine rules")
+print("first rule: ", round(np.linalg.norm(r-s)**2, 3) ==
+      round(np.linalg.norm(r)**2 + np.linalg.norm(s)**2 - 2*np.linalg.norm(r)*np.linalg.norm(s)*math.cos(teta),3))
+print("second rule: ", round(float(np.dot(r, s)), 3) == round(np.linalg.norm(r)*np.linalg.norm(s)*math.cos(teta),3))
+
+print("\nVectors projections")
+print("Scalar projection: ", round(float(np.dot(r, s))/np.linalg.norm(r), 3) ==
+    round(np.linalg.norm(s)*math.cos(teta), 3))
+print("Vector projection: ", round(float(np.dot(r, s)/(np.linalg.norm(r)*np.linalg.norm(r))), 3) ==
+   round(float(np.dot(r, s)/np.dot(r, r)),3))

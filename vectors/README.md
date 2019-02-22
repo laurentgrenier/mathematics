@@ -109,8 +109,26 @@ assert np.dot(r, a * s) == a*np.dot(r, s)
 
 ![\[\left |r-s \right |^{2} = \left |r \right |^{2} + \left |s \right |^{2} - 2 \left |r \right |\left |s \right |.cos\theta\]](https://latex.codecogs.com/gif.latex?%5Cleft%20%7Cr-s%20%5Cright%20%7C%5E%7B2%7D%20%3D%20%5Cleft%20%7Cr%20%5Cright%20%7C%5E%7B2%7D%20&plus;%20%5Cleft%20%7Cs%20%5Cright%20%7C%5E%7B2%7D%20-%202%20%5Cleft%20%7Cr%20%5Cright%20%7C%5Cleft%20%7Cs%20%5Cright%20%7C.cos%5Ctheta)
 
+```python
+import numpy as np
+import math
+r = np.array([1,2])
+s = np.array([3,4])
+teta = math.acos(np.dot(r,s) / (np.linalg.norm(r)*np.linalg.norm(s)))
+round(np.linalg.norm(r-s)**2, 3) == round(np.linalg.norm(r)**2 + np.linalg.norm(s)**2 - 2*np.linalg.norm(r)*np.linalg.norm(s)*math.cos(teta),3)
+```
+
+
 ![\[r.s = \left |r \right |\left |s \right |cos(\theta )\]](https://latex.codecogs.com/gif.latex?r.s%20%3D%20%5Cleft%20%7Cr%20%5Cright%20%7C%5Cleft%20%7Cs%20%5Cright%20%7Ccos%28%5Ctheta%20%29)
 
+```python
+import numpy as np
+import math
+r = np.array([1,2])
+s = np.array([3,4])
+teta = math.acos(np.dot(r,s) / (np.linalg.norm(r)*np.linalg.norm(s)))
+round(float(np.dot(r, s)), 3) == round(np.linalg.norm(r)*np.linalg.norm(s)*math.cos(teta),3)
+```
 ##### Specific cases
 If **r** and **s** are orthogonal, **r.s = 0** \
 If **r** and **s** are going into the same direction, ![\[r.s = \left |r \right |\left |s \right |\]](https://latex.codecogs.com/gif.latex?r.s%20%3D%20%5Cleft%20%7Cr%20%5Cright%20%7C%5Cleft%20%7Cs%20%5Cright%20%7C) \
@@ -119,4 +137,30 @@ If **r** and **s** are going into opposite directions, ![\[r.s = - \left |r \rig
 ### Vectors projection
 
 ![mathematics_vectors_002](images/mathematics_vectors_002.png "Vector projection")
+
+#### Scalar projection
+![\[\frac{r.s}{\left | r \right |} = \left | s \right | \times cos(\Theta)\]](https://latex.codecogs.com/gif.latex?%5Cfrac%7Br.s%7D%7B%5Cleft%20%7C%20r%20%5Cright%20%7C%7D%20%3D%20%5Cleft%20%7C%20s%20%5Cright%20%7C%20%5Ctimes%20cos%28%5CTheta%29)
+
+```python
+import numpy as np
+import math
+r = np.array([1,2])
+s = np.array([3,4])
+teta = math.acos(np.dot(r,s) / (np.linalg.norm(r)*np.linalg.norm(s)))
+round(float(np.dot(r, s))/np.linalg.norm(r), 3) == round(np.linalg.norm(s)*math.cos(teta), 3)
+```
+
+#### Vector projection
+![\[\frac{r.s}{\left | r \right |\left | r \right |} = \frac{r.s}{r.r}\]](https://latex.codecogs.com/gif.latex?%5Cfrac%7Br.s%7D%7B%5Cleft%20%7C%20r%20%5Cright%20%7C%5Cleft%20%7C%20r%20%5Cright%20%7C%7D%20%3D%20%5Cfrac%7Br.s%7D%7Br.r%7D)
+
+```python
+import numpy as np
+r = np.array([1,2])
+s = np.array([3,4])
+round(float(np.dot(r, s)/(np.linalg.norm(r)*np.linalg.norm(r))), 3) == round(float(np.dot(r, s)/np.dot(r, r)),3)
+```
+
+
+
+
 
