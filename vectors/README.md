@@ -160,7 +160,17 @@ s = np.array([3,4])
 round(float(np.dot(r, s)/(np.linalg.norm(r)*np.linalg.norm(r))), 3) == round(float(np.dot(r, s)/np.dot(r, r)),3)
 ```
 
+## Basis vectors
 
+### notation 
 
+![\[\hat{e_{1}}\]](https://latex.codecogs.com/gif.latex?%5Chat%7Be_%7B1%7D%7D)
+the _hat_ means that the vector is of unit length.
 
+### orthogonal vectors
+**r** and **s** are orthogonal if the dot product **r.s = 0**. \
+That means that **r** doesn't exist in the basis **s**.
 
+> Basis vectors is a set of vectors that: 
+> * are not linear combination of each other
+> * span the space. The space is then n-dimensional
