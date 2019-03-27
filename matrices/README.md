@@ -154,3 +154,7 @@ def rotation_matrix(angle):
     return [[round(np.cos(angle), 3), round(np.sin(angle), 3)], [-round(np.sin(angle), 3), round(np.cos(angle), 3)]]
 np.dot(rotation_matrix(-np.pi/2), e1)
 ```
+
+## Determinants and inverses
+The determinant change the scope of the space.
+

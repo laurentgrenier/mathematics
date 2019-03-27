@@ -54,7 +54,7 @@ np.linalg.norm(r)
 Let's ![\[r = \begin{bmatrix} r_{1} \\ r_{2} \end{bmatrix}\]](https://latex.codecogs.com/gif.latex?r%20%3D%20%5Cbegin%7Bbmatrix%7D%20r_%7B1%7D%20%5C%5C%20r_%7B2%7D%20%5Cend%7Bbmatrix%7D) 
 and ![\[s = \begin{bmatrix} s_{1} \\ s_{2} \end{bmatrix}\]](https://latex.codecogs.com/gif.latex?s%20%3D%20%5Cbegin%7Bbmatrix%7D%20s_%7B1%7D%20%5C%5C%20s_%7B2%7D%20%5Cend%7Bbmatrix%7D)
 
-![\[r.s = r_{1}s_{1} \times r_{2}s_{2}\]](https://latex.codecogs.com/gif.latex?r.s%20%3D%20r_%7B1%7Ds_%7B1%7D%20%5Ctimes%20r_%7B2%7Ds_%7B2%7D)
+![\[\[r.s = r_{1}s_{1} + r_{2}s_{2}\]](https://latex.codecogs.com/gif.latex?r.s%20%3D%20r_%7B1%7Ds_%7B1%7D%20&plus;%20r_%7B2%7Ds_%7B2%7D)
 
 ```python
 import numpy as np

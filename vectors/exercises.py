@@ -53,4 +53,3 @@ print("\nBasis vectors")
 print("unit length vector: ", [1,0])
 print("r and s are linearly dependent: ", np.dot(r, s) != 0)
 print("v1 and v2 are linearly independent: ", np.dot(v1, v2) == 0)
-
