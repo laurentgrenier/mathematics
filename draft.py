@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import numpy.linalg as la
 r = np.array([1, 2, 3])
@@ -162,3 +163,23 @@ def my_transpose(A):
 
 print("not transposed: ", A)
 print("transposed: ", np.array_equal(my_transpose(A), np.transpose(A)))
+
+
+
+
+def test_meshgrid_001():
+    xs, ys = np.meshgrid(np.arange(0,6,0.05), np.arange(0,6,0.05))
+    zs = 2 * xs ** 2 * ys
+    h = plt.contourf(xs, ys, zs)
+    plt.show()
+
+def test_meshgrid_002():
+    xs, ys = np.meshgrid(np.arange(-4,4,0.001), np.arange(-4,4,0.001))
+    zs = 3 * (1 - xs) ** 2 * np.exp(-xs ** 2 - (ys + 1) ** 2)
+    - 10 * (xs / 5 - xs ** 3 - ys ** 5) * np.exp(-xs ** 2 - ys ** 2)
+    - 1/3 * np.exp(-(xs + 1) ** 2 - ys ** 2)
+
+    h = plt.contourf(xs, ys, zs)
+    plt.show()
+
+test_meshgrid_002()
