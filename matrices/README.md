@@ -158,3 +158,62 @@ np.dot(rotation_matrix(-np.pi/2), e1)
 ## Determinants and inverses
 The determinant change the scope of the space.
 
+![\[det(A)=ad - bc\]](https://latex.codecogs.com/gif.latex?det%28A%29%3Dad%20-%20bc)
+
+```python
+import numpy as np
+G = np.array([[1, -1], [-1, 3]])
+np.linalg.det(G)
+```
+
+### Using the determinant for a matrix inverse calculation
+
+Let ![\[A = \begin{pmatrix} a & b\\ c & d \end{pmatrix}\]](https://latex.codecogs.com/gif.latex?A%20%3D%20%5Cbegin%7Bpmatrix%7D%20a%20%26%20b%5C%5C%20c%20%26%20d%20%5Cend%7Bpmatrix%7D)
+
+![\[\frac{1}{det(A)}\begin{pmatrix} d & -b\\ -c & a \end{pmatrix} = A^{-1}\]](https://latex.codecogs.com/gif.latex?%5Cfrac%7B1%7D%7Bdet%28A%29%7D%5Cbegin%7Bpmatrix%7D%20d%20%26%20-b%5C%5C%20-c%20%26%20a%20%5Cend%7Bpmatrix%7D%20%3D%20A%5E%7B-1%7D)
+
+## Singular matrix
+A matrix is singular if an inverse exists.
+
+## Einstein summation convention
+Les multiply two matrix. \
+![\[\begin{pmatrix} a_{11} & a_{12} & ... & a_{1n}\\ a_{21} & ... & ... & ...\\ ... & ... & ... & ...\\ a_{n1} & ... & ... & a_{nn} \end{pmatrix} \begin{pmatrix} b_{11} & b_{12} & ... & b_{1n}\\ b_{21} & ... & ... & ...\\ ... & ... & ... & ...\\ b_{n1} & ... & ... & b_{nn} \end{pmatrix}\]](https://latex.codecogs.com/gif.latex?%5Cbegin%7Bpmatrix%7D%20a_%7B11%7D%20%26%20a_%7B12%7D%20%26%20...%20%26%20a_%7B1n%7D%5C%5C%20a_%7B21%7D%20%26%20...%20%26%20...%20%26%20...%5C%5C%20...%20%26%20...%20%26%20...%20%26%20...%5C%5C%20a_%7Bn1%7D%20%26%20...%20%26%20...%20%26%20a_%7Bnn%7D%20%5Cend%7Bpmatrix%7D%20%5Cbegin%7Bpmatrix%7D%20b_%7B11%7D%20%26%20b_%7B12%7D%20%26%20...%20%26%20b_%7B1n%7D%5C%5C%20b_%7B21%7D%20%26%20...%20%26%20...%20%26%20...%5C%5C%20...%20%26%20...%20%26%20...%20%26%20...%5C%5C%20b_%7Bn1%7D%20%26%20...%20%26%20...%20%26%20b_%7Bnn%7D%20%5Cend%7Bpmatrix%7D)
+
+From that multiplication, we can extract one step as an example \
+![\[(ab)_{23} = a_{21}b_{13} + a_{22}b_{23} + ... + a_{2n}b_{n3}\]](https://latex.codecogs.com/gif.latex?%28ab%29_%7B23%7D%20%3D%20a_%7B21%7Db_%7B13%7D%20&plus;%20a_%7B22%7Db_%7B23%7D%20&plus;%20...%20&plus;%20a_%7B2n%7Db_%7Bn3%7D)
+
+Then, we can deduct the Einstein summation of the matrix multiplication \
+![\[\sum_{j} a_{ij}b_{jk} = a_{ij}b_{jk}\]](https://latex.codecogs.com/gif.latex?%5Csum_%7Bj%7D%20a_%7Bij%7Db_%7Bjk%7D%20%3D%20a_%7Bij%7Db_%7Bjk%7D)
+
+```python
+import numpy as np
+A = np.array([[1, 2, 3], [4, 0, 1]])
+B = np.array([[1, 1, 0],[0, 1, 1], [1, 0, 1]])
+np.dot(A, B)
+```
+
+
+## Transposed matrix
+![\[b_{ij} = a_{ji}\]](https://latex.codecogs.com/gif.latex?b_%7Bij%7D%20%3D%20a_%7Bji%7D)
+
+```python
+import numpy as np
+
+A = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+def my_transpose(A):
+    (n, m) = A.shape
+
+    B = np.zeros((m, n))
+    for i in range(n):
+        for j in range(m):
+            B[j, i] = A[i, j]
+
+    return B
+
+print("not transposed: ", A)
+print("transposed: ", np.array_equal(my_transpose(A), np.transpose(A)))
+```
+
+![\[A^{T}A = I\]](https://latex.codecogs.com/gif.latex?A%5E%7BT%7DA%20%3D%20I)
+

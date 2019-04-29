@@ -1,5 +1,5 @@
 # venv folder 
-**/venv/
+**/math_env/
 
 # vscode folders
 **/.vscode/
@@ -29,4 +29,7 @@ __pycache__/
 
 # ignore models
 **/models/
+
+# ignore checkpoints
+**/.ipynb_checkpoints/
 

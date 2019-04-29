@@ -118,3 +118,47 @@ def build_reflection_matrix_3(bearBasis) : # The parameter bearBasis is a 2×2 m
     return T
 
 print("reflexion matrix: ", build_reflection_matrix_3(V))
+
+
+def test_zip():
+    plt.style.use('ggplot')
+    e1 = np.array([1, 0, 0])
+    r  = np.array([2, 3, 5])
+    origin=np.array([0, 0, 0])
+
+    print("concatenate :", e1)
+    all = np.array([e1, r])
+
+    X, Y, Z = zip(origin, e1, r)
+    print("X:", X)
+    print("Y:", Y)
+    print("Z:", Z)
+    print("U:", U)
+    print("V:", V)
+    print("W:", W)
+
+
+    test1=[1, 2, 3]
+    test2=[4, 5, 6]
+    test3=[7, 8, 9]
+
+    A, B, C=zip(test1, test2, test3)
+    print(A, B, C)
+
+
+
+
+A = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+def my_transpose(A):
+    (n, m) = A.shape
+
+    B = np.zeros((m, n))
+    for i in range(n):
+        for j in range(m):
+            B[j, i] = A[i, j]
+
+    return B
+
+print("not transposed: ", A)
+print("transposed: ", np.array_equal(my_transpose(A), np.transpose(A)))
