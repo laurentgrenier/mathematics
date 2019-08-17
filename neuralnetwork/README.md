@@ -1,4 +1,4 @@
-# multivariate calculus
+# neural network
 
 
 > Each formulas URLs are generated using the website https://www.codecogs.com/latex/eqneditor.php  

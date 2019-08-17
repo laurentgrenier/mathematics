@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import numpy.linalg as la
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
 r = np.array([1, 2, 3])
 s = np.array([4, 5, 6])
 
@@ -182,4 +186,78 @@ def test_meshgrid_002():
     h = plt.contourf(xs, ys, zs)
     plt.show()
 
-test_meshgrid_002()
+
+def test_3d_plot():
+    X, Y = np.meshgrid(np.arange(-4, 4, 0.001), np.arange(-4, 4, 0.001))
+    Z = 3 * (1 - X) ** 2 * np.exp(-X ** 2 - (Y + 1) ** 2)
+    - 10 * (X / 5 - X ** 3 - Y ** 5) * np.exp(-X ** 2 - Y ** 2)
+    - 1 / 3 * np.exp(-(X + 1) ** 2 - Y ** 2)
+
+    fig = plt.figure()
+    ax = fig.gca(projection='3d')
+
+    # Plot the surface.
+    surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
+                           linewidth=0, antialiased=False)
+
+    # Customize the z axis.
+    ax.set_zlim(-1.01, 1.01)
+    ax.zaxis.set_major_locator(LinearLocator(10))
+    ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+
+    # Add a color bar which maps values to colors.
+    fig.colorbar(surf, shrink=0.5, aspect=5)
+
+    plt.show()
+
+
+
+def neural_output_by_hand():
+    # First set up the network.
+    sigma = np.tanh
+    W = np.array([[-2, 4, -1], [6, 0, -3]])
+    b = np.array([0.1, -2.5])
+
+    # Define our input vector
+    x = np.array([0.3, 0.4, 0.1])
+
+    # Calculate the values by hand,
+    # and replace a1_0 and a1_1 here (to 2 decimal places)
+    # (Or if you feel adventurous, find the values with code!)
+
+    a1_0, a1_1 = sigma(W @ x + b)
+
+    a1 = np.array([a1_0, a1_1])
+
+    return a1
+
+sigma = lambda z: 1 / (1 + np.exp(-z))
+
+def plot_logistic_function():
+    values_range = 10
+    xs = np.array([x-int(values_range / 2) for x in range(values_range+1)])
+    ys = sigma(xs)
+    plt.plot(xs, ys)
+    plt.show()
+
+def random_view():
+    print("random: ", np.random.randn(6, 1))
+
+random_view()
+
+
+import numpy as np
+import scipy.misc
+
+g0 = lambda x: 1
+g2 = lambda x: 1 - np.power(x,2) / scipy.special.factorial(2)
+g4 = lambda x: 1 - np.power(x,2) / scipy.special.factorial(2) + np.power(x,4) / scipy.special.factorial(4)
+
+gn = lambda nx: np.array([np.power(-1,(n % 4) / 2) * np.power(nx[1],n) / scipy.special.factorial(n) for n in np.arange(0, nx[0]+1, 2)]).sum()
+print("gn: ", gn((0,3)))
+print("gn: ", gn((1,3)))
+print("gn: ", gn((2,3)))
+print("gn: ", gn((3,3)))
+print("gn: ", gn((4,3)))
+print(4%4)
+

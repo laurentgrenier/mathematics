@@ -1,2 +1,3 @@
 scipy
 Pillow
+pandas

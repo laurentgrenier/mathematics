@@ -106,4 +106,107 @@ def plot_3d():
     plt.show(block=True)
     plt.interactive(False)
 
-plot_3d()
+
+def animated_graph():
+    import math
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from matplotlib.animation import FuncAnimation
+
+
+    def beta_pdf(x, a, b):
+        return (x**(a-1) * (1-x)**(b-1) * math.gamma(a + b)
+                / (math.gamma(a) * math.gamma(b)))
+
+
+    class UpdateDist(object):
+        def __init__(self, ax, prob=0.5):
+            self.success = 0
+            self.prob = prob
+            self.line, = ax.plot([], [], 'k-')
+            self.x = np.linspace(0, 1, 200)
+            self.ax = ax
+
+            # Set up plot parameters
+            self.ax.set_xlim(0, 1)
+            self.ax.set_ylim(0, 15)
+            self.ax.grid(True)
+
+            # This vertical line represents the theoretical value, to
+            # which the plotted distribution should converge.
+            self.ax.axvline(prob, linestyle='--', color='black')
+
+        def init(self):
+            self.success = 0
+            self.line.set_data([], [])
+            return self.line,
+
+        def __call__(self, i):
+            # This way the plot can continuously run and we just keep
+            # watching new realizations of the process
+            if i == 0:
+                return self.init()
+
+            # Choose success based on exceed a threshold with a uniform pick
+            if np.random.rand(1,) < self.prob:
+                self.success += 1
+            y = beta_pdf(self.x, self.success + 1, (i - self.success) + 1)
+            print("y type: ", type(y))
+            self.line.set_data(self.x, y)
+            print("call !")
+            return self.line,
+
+    # Fixing random state for reproducibility
+    np.random.seed(19680801)
+
+
+    fig, ax = plt.subplots()
+    ud = UpdateDist(ax, prob=0.7)
+    anim = FuncAnimation(fig, ud, frames=np.arange(100), init_func=ud.init,
+                         interval=100, blit=True)
+    plt.show()
+
+def my_animation():
+    from matplotlib.animation import FuncAnimation
+
+
+    def f(xs, i):
+        if i > 20:
+            return [np.cos(x) for x in xs]
+        return [i for x in xs]
+
+    class UpdateGraph(object):
+        def __init__(self, ax):
+            self.ax = ax
+            self.xs =np.arange(-3, 3, 0.1)
+            self.line, = ax.plot([], [], 'k-')
+            # Set up plot parameters
+            self.ax.set_xlim(-3, 3)
+            self.ax.set_ylim(0, 1000)
+
+
+        def init(self):
+            self.line.set_data([], [])
+            return self.line,
+
+        def __call__(self, i):
+            if i == 0:
+                return self.init()
+
+            ys = f(self.xs, i)
+            print("y type: ", type(ys))
+
+            self.line.set_data(self.xs, ys)
+            return self.line,
+
+
+    fig, ax = plt.subplots()
+    update_function = UpdateGraph(ax)
+    anim = FuncAnimation(fig, update_function, frames=np.arange(100), init_func=update_function.init,
+                         interval=100, blit=True)
+    plt.show()
+
+
+
+
