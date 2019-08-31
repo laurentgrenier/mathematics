@@ -308,15 +308,50 @@ def cov(X):
     ###
     return covariance_matrix
 
-A = np.array([[1,4,2],[3,8,3],[2,5,2]]).T
-print("np.cov: ", np.cov(A))
-print("cov: ", cov(A))
+def affine_mean(mean, A, b):
+    """Compute the mean after affine transformation
+    Args:
+        x: ndarray, the mean vector
+        A, b: affine transformation applied to x
+    Returns:
+        mean vector after affine transformation
+    """
+    ### Edit the code below to compute the mean vector after affine transformation
+    affine_m = np.zeros(mean.shape) # affine_m has shape (D, 1)
+    ### Update affine_m
+    print("shape of mean: ", mean.shape)
+    print("shape of A: ", A.shape)
+    print("shape of b: ", b.shape)
+    print("shape of A * mean: ", (A*mean).shape)
+    affine_m = A @ mean + b
+    ###
+    return affine_m
 
-image_shape = (64, 64)
-# Load faces data
-dataset = fetch_olivetti_faces('./')
-faces = dataset.data.T
 
-#np.testing.assert_almost_equal(mean(faces), mean_naive(faces), decimal=6)
-np.testing.assert_almost_equal(cov(faces), cov_naive(faces))
+def affine_covariance(S, A, b):
+    """Compute the covariance matrix after affine transformation
+    Args:
+        S: ndarray, the covariance matrix
+        A, b: affine transformation applied to each element in X
+    Returns:
+        covariance matrix after the transformation
+    """
+    ### EDIT the code below to compute the covariance matrix after affine transformation
+    affine_cov = np.zeros(S.shape)  # affine_cov has shape (D, D)
+    ### Update affine_cov
+    affine_cov = A @ S @ A.T
+    ###
+    return affine_cov
+
+random = np.random.RandomState(42)
+
+X = np.array([[1,4,2],[3,8,3],[2,5,2]]).T
+
+A = random.randn(X.shape[0],X.shape[1])
+b = random.randn(X.shape[0],1)
+
+X_affine = A @ X + b
+
+print("affine_covariance: ", affine_covariance(cov(X), A, b))
+print("covariance: ", np.cov(X_affine))
 
