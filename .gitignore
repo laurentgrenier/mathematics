@@ -25,6 +25,7 @@ __pycache__/
 *.sqlite
 *.sas7bdat
 *.dta
+*.mat
 **/data/
 
 # ignore models

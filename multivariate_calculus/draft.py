@@ -343,15 +343,41 @@ def affine_covariance(S, A, b):
     ###
     return affine_cov
 
-random = np.random.RandomState(42)
+def test_affine_covariance():
+    random = np.random.RandomState(42)
 
-X = np.array([[1,4,2],[3,8,3],[2,5,2]]).T
+    X = np.array([[1,4,2],[3,8,3],[2,5,2]]).T
 
-A = random.randn(X.shape[0],X.shape[1])
-b = random.randn(X.shape[0],1)
+    A = random.randn(X.shape[0],X.shape[1])
+    b = random.randn(X.shape[0],1)
 
-X_affine = A @ X + b
+    X_affine = A @ X + b
 
-print("affine_covariance: ", affine_covariance(cov(X), A, b))
-print("covariance: ", np.cov(X_affine))
+    print("affine_covariance: ", affine_covariance(cov(X), A, b))
+    print("covariance: ", np.cov(X_affine))
+
+
+def length(x):
+    """Compute the length of a vector"""
+    length_x = np.sqrt(np.array([v**2 for v in x]).sum())  # <--- compute the length of a vector x here.
+
+    return length_x
+
+
+def dot(a, b):
+    """Compute dot product between a and b.
+    Args:
+      a, b: (2,) ndarray as R^2 vectors
+
+    Returns:
+      a number which is the dot product between a, b
+    """
+
+    dot_product = (a @ b)
+
+    return dot_product
+
+
+a = np.array([1, 0])
+b = np.array([0, 1])
 
